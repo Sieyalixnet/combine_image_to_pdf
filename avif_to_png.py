@@ -21,13 +21,13 @@ def open_save_img(filepath,filename,newFileDir=""):
         pass
     else:
         os.mkdir(os.path.join(filepath.replace(filename,""),newFileDir))
-    newPath = os.path.join(filepath.replace(filename,""),newFileDir,filename.replace("."+FROM,"__temp."+TO))
-    if TO =="JPEG":
+    newPath = os.path.join(filepath.replace(filename,""),newFileDir,filename.replace("."+FROM,"__temp."+TO.upper()))
+    if TO.upper() in ["JPEG","JPG"]:
         if img.mode in ["RGBA","P"]: 
             img = img.convert('RGB')
         img.save(newPath,quality=JPEGQUALITY)
     else:
-        img.save(newPath,TO)
+        img.save(newPath)
     print("saved temp image: ", newPath)
     return newPath
 
